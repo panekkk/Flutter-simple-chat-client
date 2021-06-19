@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "name": "Marian Nieczyporuk",
+      "messages": [
+        {
+          "content": "Płot wyższy od mego nei może być",
+          "time": "2021-05-13 22:33",
+          "type": "receiver"
+        },
+        {
+          "content": "Lorem ipsum blablacardsadas",
+          "time": "2021-05-13 22:37",
+          "type": "sender"
+        },
+        {
+          "content": "Lorem ipsum blablacardsadas",
+          "time": "2021-05-22 13:39",
+          "type": "receiver"
+        }
+      ]
+    },
+    {
+      "name": "Mateusz Żydzik",
+      "messages": [
+        {
+          "content": "Cześć i czołem ",
+          "time": "2021-05-13 22:33",
+          "type": "receiver"
+        },
+        {
+          "content": "Lorem ipsum blablacardsadas",
+          "time": "2021-05-13 22:37",
+          "type": "sender"
+        },
+        {
+          "content": "Lorem ipsum blablacardsadas",
+          "time": "2021-05-13 22:39",
+          "type": "receiver"
+        }
+      ]
+    },
+    {
+      "name": "Logan Kapuczino",
+      "messages": [
+        {
+          "content": "Lorem ipsum blablacar",
+          "time": "2021-05-13 22:33",
+          "type": "receiver"
+        },
+        {
+          "content": "Lorem ipsum blablacardsadas",
+          "time": "2021-05-13 22:37",
+          "type": "sender"
+        },
+        {
+          "content": "Lorem ipsum blablacardsadas",
+          "time": "2021-05-23 15:39",
+          "type": "receiver"
+        }
+      ]
+    }
+  ]
+}
