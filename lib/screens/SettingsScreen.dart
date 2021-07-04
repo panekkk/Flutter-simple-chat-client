@@ -10,12 +10,10 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         children: const <Widget>[
           Card(
-            child: ListTile(
-              leading: Icon(Icons.import_export_rounded),
-              title: Text("Eksportuj"),
-            )
-          
-          )
+              child: ListTile(
+            leading: Icon(Icons.import_export_rounded),
+            title: Text("Eksportuj"),
+          ))
         ],
       ),
     );

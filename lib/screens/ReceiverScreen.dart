@@ -9,7 +9,6 @@ import 'package:chat_app/globals.dart' as globals;
 class ReceiverScreen extends StatefulWidget {
   late final Socket sock;
   late final ChatUsers sender;
-   List<ChatUsers> receivers = globals.usersList;
   ReceiverScreen(Socket s, ChatUsers c) {
     this.sock = s;
     this.sender = c;
@@ -20,6 +19,8 @@ class ReceiverScreen extends StatefulWidget {
 
 class _ReceiverScreenState extends State<ReceiverScreen> {
   Widget build(BuildContext context) {
+    final List<ChatUsers> receivers = List.from(globals.usersList);
+    receivers.remove(widget.sender);
     return Scaffold(
         appBar: AppBar(
           title: Text('Z kim chcesz porozmawiać? '),
@@ -29,19 +30,17 @@ class _ReceiverScreenState extends State<ReceiverScreen> {
             Expanded(
               child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: widget.receivers.length,
+                  itemCount: receivers.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       leading: Icon(Icons.account_circle_rounded),
-                      title: Text(widget.receivers[index].name),
-                      // subtitle: Text(
-                      //     "Ostatnia wiadomość: ${globals.usersList[index].messages.last}"),
+                      title: Text(receivers[index].name),
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    ChatScreen(widget.sock,widget.receivers[index],widget.sender)));
+                                builder: (context) => ChatScreen(widget.sock,
+                                    receivers[index], widget.sender)));
                       },
                     );
                   }),
@@ -55,6 +54,19 @@ class _ReceiverScreenState extends State<ReceiverScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               FloatingActionButton(
+                heroTag: "button2",
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ContactsScreen(
+                          widget.sock,
+                        ),
+                      ));
+                },
+                child: Icon(Icons.navigate_before),
+              ),
+              FloatingActionButton(
                 heroTag: "button1",
                 onPressed: () {
                   Navigator.push(
@@ -67,25 +79,9 @@ class _ReceiverScreenState extends State<ReceiverScreen> {
                   size: 30,
                 ),
                 backgroundColor: Colors.grey,
-              ),
-              FloatingActionButton(
-                heroTag: "button2",
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ContactsScreen(
-                          widget.sock,
-                        ),
-                      ));
-                },
-                child: Icon(Icons.navigate_before),
-              )
+              )   
             ],
           ),
         ));
   }
-
-
-  
 }

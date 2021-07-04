@@ -17,7 +17,6 @@ class ContactsScreen extends StatefulWidget {
 
 class _ContactsScreenState extends State<ContactsScreen> {
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: Text('Lista użytkowników'),

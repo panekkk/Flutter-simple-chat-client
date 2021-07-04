@@ -26,7 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     if (!Broadcast.isSet) {
       Broadcast.broadcast = widget.channel.asBroadcastStream();
-      Broadcast.isSet=true;
+      Broadcast.isSet = true;
     }
     return Scaffold(
         appBar: AppBar(
@@ -40,8 +40,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Form(
                 child: TextFormField(
                   controller: _controller,
-                  decoration:
-                      const InputDecoration(labelText: 'Zarejestruj użytkownika'),
+                  decoration: const InputDecoration(
+                      labelText: 'Zarejestruj użytkownika'),
                 ),
               ),
               Expanded(
@@ -54,13 +54,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       String token = decoded.substring(
                           decoded.indexOf('key') + 3, decoded.indexOf('.'));
                       globals.usersList[pos].setToken(token);
-                      print(globals.usersList[pos].name +
-                          globals.usersList[pos].token);
                     }
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 24.0),
-                      child: Text(
-                          snapshot.hasData ? snapshot.data.toString() : ''),
+                      child: Text(''),
                     );
                   },
                 ),
@@ -75,11 +72,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               FloatingActionButton(
-                heroTag: "button1",
-                onPressed: (_sendMessage),
-                child: Icon(Icons.send),
-              ),
-              FloatingActionButton(
                 heroTag: "button2",
                 onPressed: () {
                   Navigator.pushReplacement(
@@ -90,8 +82,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ));
                 },
-                child: Icon(Icons.navigate_next),
-              )
+                child: Icon(Icons.navigate_before),
+              ),
+              FloatingActionButton(
+                heroTag: "button1",
+                onPressed: (_sendMessage),
+                child: Icon(Icons.send),
+              ),
             ],
           ),
         )
@@ -102,6 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void _sendMessage() {
     if (_controller.text.isNotEmpty) {
       String sender = _controller.text;
+      _controller.clear();
       String registrationMessage = "{'register':'true', 'sender':'$sender'}";
       globals.usersList.add(new ChatUsers(sender));
       widget.channel.write(registrationMessage);
